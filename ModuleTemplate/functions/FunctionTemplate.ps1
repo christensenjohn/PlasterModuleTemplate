@@ -23,14 +23,13 @@ function FunctionTemplate {
         1/0; write-host "will this run" -ForegroundColor Cyan
 <#
         $PSObject = [PSCustomObject] @{
-            DownloadFileName     = $DownloadFileName
-            DownloadFileNamePath = "$destinationPath\$DownloadFileName"
+            Name     = $DownloadFileName           
             DownloadFileStatus =  $DownloadFileStatus
         }
         Write-Output -InputObject $PSObject
 #> 
     } catch {
-        Write-Error -ErrorRecord $_ -ErrorAction $ErrorActionPreference
+        Write-Error -ErrorRecord $_ -ErrorAction $CallerErrorActionPreference
         #FunctionTemplate -ErrorAction Stop
 
     }
